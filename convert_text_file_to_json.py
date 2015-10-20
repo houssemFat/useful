@@ -31,8 +31,10 @@ i = 0
 # note that header = 2 
 with open('singlehop-indoor-moteid1-data.txt') as data_file:
 	for line in data_file:
+		# data start at line 4 (5 in file)
 		if (i > 4) :
 			push_line (line)
+		# header start at line 2 (3 in file)
 		elif i == 2 :
 			data['head'] = line.split()
 		i = i+1
