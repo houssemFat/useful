@@ -1,3 +1,3 @@
 # useful
-Quick utilities codes for automate and repetetive tasks  
+Quick utilities codes for repetetive and common tasks  
 #### * parse fromatted file text to json 
