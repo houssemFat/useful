@@ -1,0 +1,42 @@
+#! /usr/bin/python3.4
+# -*- coding: utf-8 -*-
+import json
+import os
+import sys
+from os import path
+import io
+import codecs
+result = {}
+text = ""
+locale = "locale"
+
+def collect ():
+    """
+    Collect all json file
+    """
+    _path = path.join (path.dirname(path.realpath(__file__)), locale)
+    if not path.exists(_path) :
+        error = "%s not found !" % _path
+        raise Exception(error)
+    files = [path.join (_path, f) for f in os.listdir(_path) if path.isfile(path.join (_path, f))]
+    for entry in files :
+        with io.open(entry, 'r' , encoding='utf8') as fr :
+            result.update(json.loads(fr.read()))
+    _out = path.join (path.dirname(_path), locale + ".json")
+
+    #FIXME , not work with json.dumps (dict, fd)
+    with open(_out, "wa") as fw :
+        fw.write("{\n");
+        length = len(result.keys())
+        i = 0
+        for key, val in result.iteritems ():
+            fw.write("\"" + key.encode('utf-8') +  "\" : " +  "\"" +   val.encode('utf-8') + "\"")
+            if i < length - 1 :
+                fw.write(",")
+            fw.write("\n")
+            i+=1
+        fw.write("\n}");
+
+if __name__ == '__main__':
+    locale = sys.argv [1] if (  len(sys.argv) > 1 ) else locale
+    collect()
