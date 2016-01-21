@@ -7,7 +7,11 @@
 			swap this value with the value of c_index (latest modified index)
 	
 """
-def quick_sort( end, start, list=[7, 2, 1, 6, 8, 5, 3, 0, 4]):
+def quick_sort(list):
+  print "list >>> "
+  if len(list) < 2 :
+	return list
+  print list
   pivot = list[len(list) -1]
   partition_index = 0
   swap_value = 0 
@@ -19,12 +23,10 @@ def quick_sort( end, start, list=[7, 2, 1, 6, 8, 5, 3, 0, 4]):
 		list[index] = swap_value
 		list[partition_index] = current
 		print "swap %d with %d" % (swap_value, current)
+		# increments current partition index 
 		partition_index = partition_index + 1
-  
-  print list[:partition_index]
-  print list[partition_index:]
-  print (list)
-  print "me".upper()
+  # return the 2 partition 
+  return quick_sort(list[:partition_index]) + [pivot]  +  quick_sort (list[partition_index:len(list)-1])
 		
 if __name__ == "__main__" :
-	quick_sort(0, 1)
+	print quick_sort([7, 2, 1, 6, 8, 5, 3, 0, 4])
