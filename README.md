@@ -10,5 +10,5 @@ Quick utilities codes for repetetive and common tasks
 
 #### * Heroku cmds bash tools
 
-#### Some image manipulations placeholder & digit recoginition
+#### * Some image manipulations placeholder & digit recoginition
 
